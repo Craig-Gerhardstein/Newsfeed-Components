@@ -31,3 +31,60 @@ let menuItems = [
 
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
 */
+const headerDiv = document.querySelector('.header')
+
+function menuMaker(array){
+  const divMenu = document.createElement('div');
+  const menuButton = document.querySelector('.menu-button')
+  const menuList = document.createElement('ul')
+  divMenu.classList.add("menu");
+  array.forEach (item =>{
+    const list = document.createElement('li');
+    list.textContent = item;
+    menuList.appendChild(list);
+  
+  })
+  divMenu.appendChild(menuList);
+  menuButton.addEventListener('click', event =>{
+    divMenu.classList.toggle('menu--open');
+  })
+  return divMenu;
+}
+
+headerDiv.appendChild(menuMaker(menuItems));
+//   const listMenu = document.createElement('div')
+//   const listUL = document.createElement('ul')
+//   const listStudents = document.createElement('li');
+//   const listFaculty = document.createElement('li');
+//   const listWhatsNew = document.createElement('li');
+//   const listTechTrends = document.createElement('li');
+//   const listMusic = document.createElement('li');
+//   const listLogOut = document.createElement('li');
+
+//   listMenu.appendChild(listUL);
+//   listUL.appendChild(listStudents);
+//   listUL.appendChild(listFaculty);
+//   listUL.appendChild(listWhatsNew);
+//   listUL.appendChild(listTechTrends);
+//   listUL.appendChild(listMusic);
+//   listUL.appendChild(listLogOut);
+
+//   listMenu.classList.add('menu');
+  
+//   listStudents.textContent = menuLink
+  
+//   menuButton.addEventListener('click', event =>{
+//     listMenu.classList.toggle('menu--open')
+//   })
+//   return listMenu;
+
+// }
+// menuItems.map((menuString) =>{
+//   menuButton.appendChild(
+//   menuMaker(menuString))
+// })
+// menuItems.forEach(info =>{
+//   menuButton.appendChild(menuMaker(info ))
+//   console.log(info)
+// })
+
