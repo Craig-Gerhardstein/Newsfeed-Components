@@ -86,24 +86,76 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Randmon Info',
+    date: 'Feb 10th, 2021',
+    firstParagraph:`alkjdshfjkasdhfjhasdjfhajshfuehuheuhuhfajsdhfaudhfajhdfuahdfuhadjfhuiehjhadsfudhafjdhfuhehfajdhfuahfajhdufheihfajdhfuehfajhdfuehahfuhejhafuehuafhdfhasdjfhuehdfjahsdfkjhasdfjdhfaud`,
+
+    secondParagraph:`lksdjflkasjdfkljasdflkasjdflkajsdlfkjasdkjflksajdflkjsalkdfjlkasjdflkasjdflkjsadlkfjlksadjflkjasdlfkjalskdjflksajdflkjsdalkfjlaskdjflksdjflkjdsflkjsdalkfjsdlkjflksdajflkjsdlfkjsdlakjflkdsjflksdjaflkjsdalkfjdslkfjlkdsjflkj`,
+
+    thirdParagraph:`1;;lkjdsflkjsadlkfjdsjfoidsajfkjsaf;lkjasdfkjsadfik;lkdjfijekfjdjfijekasdjfijasdifjioejfejkjflkdsjfiajsfkjdsalfkjijedsfkljsadklfjiejfkajsdlkfjaiejkfjadjfkdsajiejfklajkfljdsaielakdfjdklsfu`
   }
 ];
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
-  and returns a DOM node looking like the one below:
+  and returns a DOM node looking like the one below:*/
 
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
+  // <div class="article">
+  //   <h2>{title of the article}</h2>
+  //   <p class="date">{date of the article}</p>
 
-    {three separate paragraph elements}
+  //   {three separate paragraph elements}
 
-    <span class="expandButton">+</span>
-  </div>
+  //   <span class="expandButton">+</span>
+  //  </div>
+  const articles = document.querySelector('.articles')
+  function articleMaker(artObj){
+    const articleDiv = document.createElement('div');
+    const articleTitle = document.createElement('h2');
+    const articleDate = document.createElement('p')
+    const articleP1 = document.createElement('p');
+    const articleP2 = document.createElement('p');
+    const articleP3 = document.createElement('p');
+    const articleButton = document.createElement('span');
 
-  Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
+    articleDiv.appendChild(articleTitle);
+    articleDiv.appendChild(articleP1);
+    articleDiv.appendChild(articleP2);
+    articleDiv.appendChild(articleP3);
+    articleDiv.appendChild(articleButton);
+
+    articleDiv.classList.add('article');
+    articleDate.classList.add('date')
+    articleButton.classList.add('expandButton')
+    
+    articleTitle.textContent = artObj.title;
+    articleDate.textContent = artObj.date;
+    articleP1.textContent = artObj.firstParagraph;
+    articleP2.textContent = artObj.secondParagraph;
+    articleP3.textContent = artObj.thirdParagraph;
+    articleButton.textContent = '+'
+
+    articleButton.addEventListener('click', event =>{
+      articleDiv.classList.toggle('article-open')
+    })
+
+    return articleDiv
+
+  }
+  data.forEach(info =>{
+    articles.appendChild(articleMaker({title: info.title, date: info.data, firstParagraph: info.firstParagraph, secondParagraph: info.secondParagraph, thirdParagraph: info.thirdParagraph}))
+  })
+  // const articleElements = data.map(articleObj =>{
+  //   const article = articleMaker(articleObj)
+  //   return article;
+  // })
+  // articleElements.forEach(article =>{
+  //   articles.appendChild(article)
+  // })
+  /* Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 
   Step 3: Don't forget to return something from your function!
